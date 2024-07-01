@@ -3,6 +3,7 @@ import os.path
 from urllib.request import urlopen
 
 from constants import DATA_CACHE_LOCATION
+from helpers import write_file
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -12,19 +13,6 @@ def get_page_html(url) -> str:
     html_bytes = page.read()
 
     return html_bytes.decode("utf-8")
-
-
-def write_file(content: str, file_name: str, overwrite_file: bool = False) -> bool:
-    if not overwrite_file and os.path.isfile(file_name):
-        logging.warn(f"File `{file_name}` already exists")
-        return False
-
-    with open(file_name, "w") as html_file:
-        logging.debug(f"Creating file {file_name}")
-        html_file.write(content)
-        logging.info(f"Finished creating file {file_name}")
-
-    return True
 
 
 class Page:
@@ -44,9 +32,10 @@ class Page:
         self.file_name = f"{DATA_CACHE_LOCATION}/{file_name}"
 
         if try_cache:
-            logging.debug("Attempting to fetch cached file")
+            logging.debug(f"Attempting to fetch cached file {self.file_name}")
             with open(self.file_name, "r") as cached_file:
                 self.content = cached_file.read()
+                logging.debug(f"Fetched cached file {self.file_name}")
 
         if not self.content:
             self.content = get_page_html(url)
