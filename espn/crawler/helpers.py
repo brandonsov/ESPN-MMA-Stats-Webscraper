@@ -4,7 +4,11 @@ import os
 logging.basicConfig(level=logging.DEBUG)
 
 
-def write_file(content: str, file_name: str, overwrite_file: bool = False) -> bool:
+def write_file(
+    content: str,
+    file_name: str,
+    overwrite_file: bool = False,
+) -> bool:
     if not overwrite_file and os.path.isfile(file_name):
         logging.warn(f"File `{file_name}` already exists")
         return False
