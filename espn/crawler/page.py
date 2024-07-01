@@ -1,5 +1,4 @@
 import logging
-import os.path
 from urllib.request import urlopen
 
 from constants import DATA_CACHE_LOCATION
