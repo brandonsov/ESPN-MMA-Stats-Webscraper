@@ -8,6 +8,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install test dependencies
-        run: pip install pytest
+        run: pip install -r requirements-dev.txt
       - name: Running pytest tests
         run: pytest
