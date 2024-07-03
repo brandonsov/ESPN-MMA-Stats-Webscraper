@@ -4,11 +4,10 @@ import urllib.parse
 
 import requests
 from constants import (
-    DATA_CACHE_LOCATION,
     ESPN_SEARCH_API_CALL,
     OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX,
 )
-from helpers import check_file_exists, write_file
+from helpers import check_file_exists, get_data_cache, write_file
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -18,7 +17,8 @@ def query_players(name_query: str) -> str:
 
     query_safe_name = urllib.parse.quote(name_query)
     search_query = f"{ESPN_SEARCH_API_CALL}{query_safe_name}"
-    output_file_name = f"{DATA_CACHE_LOCATION}/{name_query.lower().replace(" ", "_")}{OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX}"
+    data_cache_location = get_data_cache()
+    output_file_name = f"{data_cache_location}/{name_query.lower().replace(" ", "_")}{OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX}"
     if check_file_exists(output_file_name):
         logging.info(f"Using cached file {output_file_name}")
         with open(output_file_name, "r") as response_json:

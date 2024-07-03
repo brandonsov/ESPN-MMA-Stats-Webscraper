@@ -1,7 +1,13 @@
 import logging
 import os
 
+from constants import DATA_CACHE_LOCATION
+
 logging.basicConfig(level=logging.DEBUG)
+
+
+def get_data_cache() -> str:
+    return DATA_CACHE_LOCATION
 
 
 def check_file_exists(file_name: str) -> bool:

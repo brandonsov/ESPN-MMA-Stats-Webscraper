@@ -1,8 +1,7 @@
 import logging
 from urllib.request import urlopen
 
-from constants import DATA_CACHE_LOCATION
-from helpers import write_file
+from helpers import get_data_cache, write_file
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -28,7 +27,7 @@ class Page:
     ):
         logging.debug(f"Creating Page object: {locals()}")
         self.url = url
-        self.file_name = f"{DATA_CACHE_LOCATION}/{file_name}"
+        self.file_name = f"{get_data_cache()}/{file_name}"
 
         if try_cache:
             logging.debug(f"Attempting to fetch cached file {self.file_name}")
