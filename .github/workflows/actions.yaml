@@ -8,4 +8,4 @@ jobs:
       - name: Install test dependencies
         run: pip install pytest
       - name: Running pytest tests
-        run: pytest
+        run: pytest tests
