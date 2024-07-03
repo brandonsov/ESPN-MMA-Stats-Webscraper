@@ -5,5 +5,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install test dependencies
+        run: pip install pytest
       - name: Running pytest tests
         run: pytest
