@@ -5,7 +5,9 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Install test dependencies
         run: pip install pytest
       - name: Running pytest tests
-        run: pytest tests
+        run: pytest
