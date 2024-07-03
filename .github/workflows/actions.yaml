@@ -1,0 +1,9 @@
+name: Test Suite
+run-name: Running Test Suite
+on: [push]
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running pytest tests
+        run: pytest
