@@ -4,12 +4,16 @@ import os
 logging.basicConfig(level=logging.DEBUG)
 
 
+def check_file_exists(file_name: str) -> bool:
+    return os.path.isfile(file_name)
+
+
 def write_file(
     content: str,
     file_name: str,
     overwrite_file: bool = False,
 ) -> bool:
-    if not overwrite_file and os.path.isfile(file_name):
+    if not overwrite_file and check_file_exists(file_name):
         logging.warn(f"File `{file_name}` already exists")
         return False
 
