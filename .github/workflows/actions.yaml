@@ -2,6 +2,15 @@ name: Test Suite
 run-name: Running Test Suite
 on: [push]
 jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install test dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Running Ruff Linter
+        run: ruff check
   Test:
     runs-on: ubuntu-latest
     steps:
