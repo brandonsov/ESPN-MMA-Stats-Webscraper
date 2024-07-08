@@ -3,13 +3,16 @@ import logging
 import urllib.parse
 
 import requests
-from constants import (
+
+from src.espn.crawler.constants import (
     ESPN_SEARCH_API_CALL,
     OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX,
 )
-from helpers import check_file_exists, get_data_cache, write_file
-
-logging.basicConfig(level=logging.DEBUG)
+from src.espn.crawler.helpers import (
+    check_file_exists,
+    get_data_cache,
+    write_file,
+)
 
 
 def query_players(name_query: str) -> str:
@@ -25,8 +28,7 @@ def query_players(name_query: str) -> str:
             response = response_json.read()
     else:
         logging.info(f"Calling GET {search_query}")
-        response = requests.get(search_query)
-        write_file(json.dumps(response.json()), output_file_name, True)
+        response = requests.get(search_query).json()
+        write_file(json.dumps(response), output_file_name, True)
 
-
-query_players("Alex Pereira")
+    return response

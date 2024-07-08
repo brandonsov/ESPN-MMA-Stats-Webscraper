@@ -1,7 +1,7 @@
 import logging
 import os
 
-from constants import DATA_CACHE_LOCATION
+from src.espn.crawler.constants import DATA_CACHE_LOCATION
 
 logging.basicConfig(level=logging.DEBUG)
 
