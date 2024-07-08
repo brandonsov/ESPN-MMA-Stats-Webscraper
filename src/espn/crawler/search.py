@@ -21,7 +21,8 @@ def query_players(name_query: str) -> str:
     query_safe_name = urllib.parse.quote(name_query)
     search_query = f"{ESPN_SEARCH_API_CALL}{query_safe_name}"
     data_cache_location = get_data_cache()
-    output_file_name = f"{data_cache_location}/{name_query.lower().replace(" ", "_")}{OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX}"
+    normalized_name = name_query.lower().replace(" ", "_")
+    output_file_name = f"{data_cache_location}/{normalized_name}{OUTPUT_SEARCH_API_CALL_JSON_FILE_SUFFIX}"
     if check_file_exists(output_file_name):
         logging.info(f"Using cached file {output_file_name}")
         with open(output_file_name, "r") as response_json:
