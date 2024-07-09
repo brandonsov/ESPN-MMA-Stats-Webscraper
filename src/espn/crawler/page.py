@@ -14,14 +14,14 @@ def get_page_html(url) -> str:
 
 
 class Page:
-    url: str = None
-    content: str = None
-    file_name: str = None
+    url: str
+    content: str
+    file_name: str
 
     def __init__(
         self,
         url: str,
-        file_name: str = None,
+        file_name: str,
         try_cache: bool = False,
         cache_write: bool = True,
     ):
